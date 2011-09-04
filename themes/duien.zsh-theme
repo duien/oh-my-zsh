@@ -38,5 +38,5 @@ function rvm_prompt () {
 
 local return_code="%(?..%{$fg[red]%}%?%{$reset_color%})"
 
-PROMPT='%{$fg[cyan]%}%1~%{$reset_color%}%{$fg[red]%}|$(rvm_prompt)%{$fg[green]%}${vcs_info_msg_0_}%{$reset_color%}%{$fg[cyan]%}>%{$reset_color%} '
+PROMPT='%{$fg[cyan]%}%~%{$reset_color%}%{$fg[red]%}|$(rvm_prompt)%{$fg[green]%}${vcs_info_msg_0_}%{$reset_color%}%{$fg[cyan]%}>%{$reset_color%} '
 RPS1="${return_code}"

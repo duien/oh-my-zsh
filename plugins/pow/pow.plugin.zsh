@@ -24,11 +24,11 @@ rack_root_detect(){
   local orgdir=$(pwd)
   local basedir=$(pwd)
 
-  while [[ $basedir != '/' ]]; do
-    test -e "$basedir/config.ru" && break
-    builtin cd ".." 2>/dev/null
-    basedir="$(pwd)"
-  done
+  # while [[ $basedir != '/' ]]; do
+  #   test -e "$basedir/config.ru" && break
+  #   builtin cd ".." 2>/dev/null
+  #   basedir="$(pwd)"
+  # done
 
   builtin cd $orgdir 2>/dev/null
   [[ ${basedir} == "/" ]] && return 1

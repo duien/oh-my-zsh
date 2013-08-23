@@ -25,8 +25,21 @@
 ### Segment drawing
 # A few utility functions to make it easy and re-usable to draw segmented prompts
 
+
+# Code point  Glyph Description
+# U+E0A0   Version control branch
+# U+E0A1   LN (line) symbol
+# U+E0A2   Closed padlock
+# U+E0B0   Rightwards black arrowhead
+# U+E0B1   Rightwards arrowhead
+# U+E0B2   Leftwards black arrowhead
+# U+E0B3   Leftwards arrowhead
+
 CURRENT_BG='NONE'
 SEGMENT_SEPARATOR='⮀'
+SEGMENT_INNER_SEPARATOR=''
+
+setopt transient_rprompt
 
 # Begin a segment
 # Takes two arguments, background and foreground. Both can be omitted,
@@ -77,7 +90,7 @@ prompt_rvm() {
       version=$(~/.rvm/bin/rvm-prompt i v g)
     fi
     if [[ -n $version ]] ; then
-      prompt_segment red black
+      # prompt_segment red black
       echo -n "$version"
     fi
   fi
@@ -111,6 +124,7 @@ prompt_status() {
   local symbols
   symbols=()
   [[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}➥ $RETVAL"
+
   [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}⇧"
   [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}◷"
 
@@ -123,9 +137,10 @@ build_prompt() {
   prompt_status
   prompt_context
   prompt_dir
-  prompt_rvm
+  # prompt_rvm
   prompt_git
   prompt_end
 }
 
 PROMPT='%{%f%b%k%}$(build_prompt) '
+RPROMPT='%{%F{red}%}$(prompt_rvm)%{%f%}'
